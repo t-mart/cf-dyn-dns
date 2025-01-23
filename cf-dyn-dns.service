@@ -10,7 +10,7 @@ Type=oneshot
 ExecStart=deno --allow-net --allow-env /home/cfdyndns/cf-dyn-dns/main.ts
 User=cfdyndns
 Group=cfdyndns
-RemainAfterExit=yes
+RemainAfterExit=no
 Environment=CF_API_TOKEN=<fill in your Cloudflare API token>
 Environment=CF_ZONE_ID=<fill in your Cloudflare zone ID>
 Environment=CF_A_RECORDS=<fill in your Cloudflare A records, comma-separated>
