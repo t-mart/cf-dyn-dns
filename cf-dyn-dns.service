@@ -1,0 +1,19 @@
+# systemd unit service file
+
+[Unit]
+Description=Cloudflare Dynamic DNS Updater
+After=network.target network-online.target
+Documentation=https://github.com/t-mart/cf-dyn-dns
+
+[Service]
+Type=oneshot
+ExecStart=/home/cfdyndns/.local/bin/cf-dyn-dns
+User=cfdyndns
+Group=cfdyndns
+RemainAfterExit=yes
+Environment=CF_API_TOKEN=<fill in your Cloudflare API token>
+Environment=CF_ZONE_ID=<fill in your Cloudflare zone ID>
+Environment=CF_A_RECORDS=<fill in your Cloudflare A records, comma-separated>
+
+[Install]
+WantedBy=multi-user.target

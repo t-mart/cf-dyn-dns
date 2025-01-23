@@ -1,0 +1,12 @@
+# systemd timer file that runs the service every 5 minutes
+
+[Unit]
+Description=Run cf-dyn-dns.service every 5 minutes
+Documentation=https://github.com/t-mart/cf-dyn-dns
+
+[Timer]
+OnCalendar=*:0/5
+Unit=cf-dyn-dns.service
+
+[Install]
+WantedBy=timers.target
