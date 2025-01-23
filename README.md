@@ -18,15 +18,15 @@ deno cf-dyn-dns
 
 ## Running as a systemd service
 
-1. Update the `cf-dyn-dns.service` as necessary, especially the environment
-   variables.
-
-2. Add the service and timer files to the systemd directory:
+1. Add the service and timer files to the systemd directory:
 
    ```bash
    sudo cp cf-dyn-dns.service /etc/systemd/system/
    sudo cp cf-dyn-dns.timer /etc/systemd/system/
    ```
+
+2. Update the `cf-dyn-dns.service` file as necessary, especially the environment
+   variables.
 
 3. Enable and start the service:
 
