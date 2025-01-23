@@ -7,7 +7,7 @@ Documentation=https://github.com/t-mart/cf-dyn-dns
 
 [Service]
 Type=oneshot
-ExecStart=/home/cfdyndns/.local/bin/cf-dyn-dns
+ExecStart=deno --allow-net --allow-env /home/cfdyndns/cf-dyn-dns/main.ts
 User=cfdyndns
 Group=cfdyndns
 RemainAfterExit=yes

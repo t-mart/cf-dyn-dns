@@ -13,14 +13,7 @@ Follow these steps
 ```bash
 git clone https://github.com/t-mart/cf-dyn-dns.git
 cd cf-dyn-dns
-mkdir ~/.local
-deno --allow-net --allow-env --global --root ~/.local --name cf-dyn-dns npm:main.ts
-```
-
-Then, run with
-
-```bash
-cf-dyn-dns
+deno cf-dyn-dns
 ```
 
 ## Running as a systemd service
@@ -38,8 +31,10 @@ cf-dyn-dns
 3. Enable and start the service:
 
    ```bash
-   sudo systemctl enable cf-dyn-dns
-   sudo systemctl start cf-dyn-dns
+   sudo systemctl enable cf-dyn-dns.service
+   sudo systemctl enable cf-dyn-dns.timer
+   sudo systemctl start cf-dyn-dns.service
+   sudo systemctl start cf-dyn-dns.timer
    ```
 
    and check the status and the logs:
