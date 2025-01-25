@@ -1,7 +1,9 @@
 {
   "version": "4",
   "specifiers": {
-    "npm:cloudflare@4.0.0": "4.0.0"
+    "npm:@types/node@*": "22.5.4",
+    "npm:cloudflare@4.0.0": "4.0.0",
+    "npm:yn@*": "5.0.0"
   },
   "npm": {
     "@types/node-fetch@2.6.12": {
@@ -128,6 +130,9 @@
         "tr46",
         "webidl-conversions"
       ]
+    },
+    "yn@5.0.0": {
+      "integrity": "sha512-+l37+9TyGEsyxGLaTg6QgYy5KnOp74ZZl4dPFLQpBWSkO99uBC5jnS0pOGwXFViPbiaEtWbParH2KrgWWF2duQ=="
     }
   }
 }

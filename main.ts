@@ -1,8 +1,12 @@
 import Cloudflare from "npm:cloudflare@4.0.0";
+import yn from "npm:yn@5.0.0";
 
 async function getOwnIp() {
   const url = "https://checkip.amazonaws.com";
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch IP from ${url}`);
+  }
   const text = await response.text();
   return text.trim();
 }
@@ -24,12 +28,13 @@ async function createARecord(
   client: Cloudflare,
   zoneId: string,
   name: string,
-  ip: string
+  ip: string,
+  proxied: boolean
 ) {
   return await client.dns.records.create({
     zone_id: zoneId,
     type: "A",
-    proxied: true,
+    proxied,
     name,
     content: ip,
     comment: getComment(),
@@ -55,6 +60,9 @@ if (import.meta.main) {
   const aRecordNames = requireEnvVar("CF_A_RECORDS")
     .split(",")
     .map((s) => s.trim());
+  const createWithProxying = yn(requireEnvVar("CF_CREATE_WITH_PROXYING"), {
+    default: false,
+  });
 
   if (!aRecordNames.length) {
     throw new Error("No records specified");
@@ -82,7 +90,7 @@ if (import.meta.main) {
   for (const [name, record] of foundRecords) {
     if (!record) {
       console.log(`Creating record for ${name}`);
-      await createARecord(client, zoneId, name, ownIp);
+      await createARecord(client, zoneId, name, ownIp, createWithProxying);
     } else if (record.content !== ownIp) {
       console.log(`Updating record for ${name}`);
       await updateARecord(client, zoneId, record.id, ownIp);
