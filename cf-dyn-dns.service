@@ -7,24 +7,11 @@ Documentation=https://github.com/t-mart/cf-dyn-dns
 
 [Service]
 Type=oneshot
-ExecStart=deno --allow-net --allow-env /home/cfdyndns/cf-dyn-dns/main.ts
+ExecStart=deno --allow-net --allow-env --env-file /home/cfdyndns/cf-dyn-dns/main.ts
+WorkingDirectory=/home/cfdyndns/cf-dyn-dns
 User=cfdyndns
 Group=cfdyndns
 RemainAfterExit=no
-
-# Cloudflare API token
-Environment=CF_API_TOKEN=
-
-# Cloudflare zone ID 
-Environment=CF_ZONE_ID=
-
-# Comma-separated list of A records to update
-# e.g. example.com,*.example.com
-Environment=CF_A_RECORDS=
-
-# If the record does not exist, create it with or without proxying
-# Accepts all reasonable boolean values, e.g. 1, 0, true, false, yes, no
-Environment=CF_CREATE_WITH_PROXYING=
 
 [Install]
 WantedBy=multi-user.target

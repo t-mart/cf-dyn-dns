@@ -6,7 +6,7 @@ public IP address of the machine it is running on.
 It should run frequently, probably with a service system like systemd, for which
 a unit file is provided.
 
-## Installation
+## Setup
 
 Follow these steps
 
@@ -25,10 +25,11 @@ deno cf-dyn-dns
    sudo cp cf-dyn-dns.timer /etc/systemd/system/
    ```
 
-2. Update the `cf-dyn-dns.service` file, at least filling in the environment
-   variables.
+2. Review the `cf-dyn-dns.service` file and make changes as appropriate.
 
-3. Enable and start the service:
+3. Copy `.env.template` to `.env` and fill in the required values.
+
+4. Enable and start the service:
 
    ```bash
    sudo systemctl enable cf-dyn-dns.service
