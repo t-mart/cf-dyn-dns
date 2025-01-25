@@ -25,7 +25,7 @@ deno cf-dyn-dns
    sudo cp cf-dyn-dns.timer /etc/systemd/system/
    ```
 
-2. Update the `cf-dyn-dns.service` file as necessary, especially the environment
+2. Update the `cf-dyn-dns.service` file, at least filling in the environment
    variables.
 
 3. Enable and start the service:

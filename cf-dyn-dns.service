@@ -11,9 +11,20 @@ ExecStart=deno --allow-net --allow-env /home/cfdyndns/cf-dyn-dns/main.ts
 User=cfdyndns
 Group=cfdyndns
 RemainAfterExit=no
-Environment=CF_API_TOKEN=<fill in your Cloudflare API token>
-Environment=CF_ZONE_ID=<fill in your Cloudflare zone ID>
-Environment=CF_A_RECORDS=<fill in your Cloudflare A records, comma-separated>
+
+# Cloudflare API token
+Environment=CF_API_TOKEN=
+
+# Cloudflare zone ID 
+Environment=CF_ZONE_ID=
+
+# Comma-separated list of A records to update
+# e.g. example.com,*.example.com
+Environment=CF_A_RECORDS=
+
+# If the record does not exist, create it with or without proxying
+# Accepts all reasonable boolean values, e.g. 1, 0, true, false, yes, no
+Environment=CF_CREATE_WITH_PROXYING=
 
 [Install]
 WantedBy=multi-user.target
